@@ -1,0 +1,2 @@
+import {db} from './server';
+export async function recordDiagnostic(code:string,source:string){try{await db().batch([db().prepare('INSERT INTO diagnostic_events (id,code,source,created) VALUES (?,?,?,?)').bind(crypto.randomUUID(),code,source,new Date().toISOString()),db().prepare('DELETE FROM diagnostic_events WHERE created<?').bind(new Date(Date.now()-30*864e5).toISOString())]);}catch{console.error('diagnostic_storage_unavailable');}}

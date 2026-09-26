@@ -47,3 +47,12 @@ next-env.d.ts
 *.tsbuildinfo
 
 /public/pdf.worker.min.mjs
+
+/public/ocr/
+*.ppbackup
+
+/private-backups/
+
+/public/pdf-wasm/
+/public/pdf-cmaps/
+/public/pdf-fonts/

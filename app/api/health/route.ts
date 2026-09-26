@@ -1,0 +1,2 @@
+import {db,runtime} from '@/lib/server';
+export async function GET(){let ready=false;try{await db().prepare('SELECT id FROM cases LIMIT 1').all();await db().prepare('SELECT id FROM support_tickets LIMIT 1').all();await runtime().BUCKET.head('profilepath-health-probe');ready=true;}catch{console.error('health_check_failed');}return Response.json({status:ready?'ok':'unavailable',checkedAt:new Date().toISOString()},{status:ready?200:503,headers:{'Cache-Control':'no-store'}});}

@@ -7,6 +7,7 @@ allowBuilds:
   esbuild: true
   fsevents: true
   sharp: true
+  tesseract.js: false # optional donation prompt; no build required
   unrs-resolver: true
   workerd: true
 storeDir: ${SITES_PNPM_SHARED_STORE:-.sites-runtime/pnpm-store}
