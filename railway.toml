@@ -1,0 +1,9 @@
+# Only the independent operations service deploys this repository on Railway.
+# The customer application remains on Sites.
+[build]
+builder = "DOCKERFILE"
+dockerfilePath = "operations/Dockerfile"
+[deploy]
+startCommand = "node scripts/check-health.mjs"
+cronSchedule = "*/15 * * * *"
+restartPolicyType = "NEVER"

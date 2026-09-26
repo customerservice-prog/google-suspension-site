@@ -1,7 +1,7 @@
 import {env} from 'cloudflare:workers';
 import {getChatGPTUser} from '@/app/chatgpt-auth';
 import {activePass} from './commerce';
-export function runtime(){return env as unknown as {DB:D1Database;BUCKET:R2Bucket;STRIPE_SECRET_KEY?:string;STRIPE_WEBHOOK_SECRET?:string;STRIPE_PRICE_ID?:string;SITE_URL?:string;PAYMENTS_ENABLED?:string;SUPPORT_EMAIL?:string;OPERATOR_NAME?:string;REFUND_POLICY?:string;LAUNCH_REVIEWED?:string;OWNER_EMAIL?:string};}
+export function runtime(){return env as unknown as {DB:D1Database;BUCKET:R2Bucket;STRIPE_SECRET_KEY?:string;STRIPE_WEBHOOK_SECRET?:string;STRIPE_PRICE_ID?:string;SITE_URL?:string;PAYMENTS_ENABLED?:string;SUPPORT_EMAIL?:string;OPERATOR_NAME?:string;REFUND_POLICY?:string;LAUNCH_REVIEWED?:string;OWNER_EMAIL?:string;BACKUP_RUNNER_TOKEN_HASH?:string};}
 export function db(){const d=runtime().DB;if(!d)throw new Error('Storage unavailable');return d;}
 export async function identity(){const u=await getChatGPTUser();if(!u)throw new Error('SIGN_IN_REQUIRED');return u;}
 export async function operator(){const u=await identity();if(!runtime().OWNER_EMAIL||u.email.toLowerCase()!==runtime().OWNER_EMAIL!.toLowerCase())throw new Error('FORBIDDEN');return u;}
