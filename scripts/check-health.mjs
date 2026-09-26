@@ -1,3 +1,3 @@
 const base=process.env.PROFILEPATH_URL;if(!base||new URL(base).protocol!=='https:')throw Error('Set PROFILEPATH_URL to an HTTPS origin.');
-const headers=process.env.PROFILEPATH_SITE_ACCESS_TOKEN?{'OAI-Sites-Authorization':process.env.PROFILEPATH_SITE_ACCESS_TOKEN}:{};
+const headers=process.env.PROFILEPATH_SITE_ACCESS_TOKEN?{'OAI-Sites-Authorization':process.env.PROFILEPATH_SITE_ACCESS_TOKEN.startsWith('Bearer ')?process.env.PROFILEPATH_SITE_ACCESS_TOKEN:'Bearer '+process.env.PROFILEPATH_SITE_ACCESS_TOKEN}:{};
 const r=await fetch(new URL('/api/health',base),{headers,redirect:'error',signal:AbortSignal.timeout(20000)});if(!r.ok)throw Error('ProfilePath health check failed: HTTP '+r.status);const j=await r.json();if(j.status!=='ok')throw Error('ProfilePath storage is unavailable.');console.log('ProfilePath storage health is OK.');
