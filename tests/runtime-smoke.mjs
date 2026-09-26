@@ -10,7 +10,7 @@ const headers={'oai-authenticated-user-id':'test-owner','oai-authenticated-user-
 const fetch=(path,options={})=>mf.dispatchFetch('https://example.com'+path,options);
 async function webhook(event){const timestamp=Math.floor(Date.now()/1000),body=JSON.stringify(event);const key=await crypto.subtle.importKey('raw',new TextEncoder().encode(secret),{name:'HMAC',hash:'SHA-256'},false,['sign']);const sig=await crypto.subtle.sign('HMAC',key,new TextEncoder().encode(timestamp+'.'+body));const hex=Buffer.from(sig).toString('hex');return fetch('/api/webhook',{method:'POST',headers:{'stripe-signature':`t=${timestamp},v1=${hex}`},body});}
 try{const db=await mf.getD1Database('DB');for(const filename of readdirSync(root+'/drizzle').filter(x=>x.endsWith('.sql')).sort()){for(const statement of readFileSync(root+'/drizzle/'+filename,'utf8').split('--> statement-breakpoint'))await db.exec(statement.trim().replaceAll('\n',' '));}
-let r=await fetch('/');assert.equal(r.status,200);assert.match(await r.text(),/back to business/);pass('homepage renders');
+let r=await fetch('/');assert.equal(r.status,200);assert.match(await r.text(),/back on the map/);pass('homepage renders');
 r=await fetch('/pdf.worker.min.mjs');assert.equal(r.status,200);assert.ok((await r.text()).length>100000);pass('local PDF worker packaged');
 r=await fetch('/api/cases');assert.equal(r.status,401);pass('anonymous cases blocked');
 r=await fetch('/api/status');assert.equal((await r.json()).paymentsEnabled,false);pass('payments closed without full launch configuration');
