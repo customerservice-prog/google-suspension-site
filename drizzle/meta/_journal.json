@@ -15,6 +15,13 @@
       "when": 1790390056137,
       "tag": "0001_smiling_wallop",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1790390858552,
+      "tag": "0002_brown_night_nurse",
+      "breakpoints": true
     }
   ]
 }

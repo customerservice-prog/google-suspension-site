@@ -69,3 +69,11 @@ Listen for checkout.session.completed, checkout.session.async_payment_succeeded,
 ## Data and operations
 
 Authenticated `/api/account/export` provides an owner-scoped JSON export of all case text, evidence metadata and purchases. The import UI validates a selected case, strips paid entitlements, removes its ID/version and stages it for review as a new case. Original R2 documents are downloaded individually; this is a customer backup facility, not an automated disaster-recovery service. Hosting-level backup retention, restoration drills, external error alerting and real-browser QA remain launch tasks. Unexpected request failures produce metadata-only diagnostic logs without notice text, documents or credentials. Save, checkout and upload endpoints have owner-based rate limits. Runtime identity still relies on the hosting platform stripping user-supplied auth headers and injecting verified identity.
+
+## Nonpayment preparation and recovery safeguards
+
+A free pre-submission screen surfaces unfinished bracketed fields, outdated drafts, missing identity/notice, evidence checklist gaps, recommended route conflicts and profile comparison inconsistencies. It never labels a case Google-approved or predicts an outcome.
+
+Each successful update atomically preserves the prior case text. The latest 10 prior versions are owner-scoped and can be loaded for review, then explicitly saved. Concurrent stale writes do not create usable snapshots or overwrite newer changes. Deleting a case also deletes its snapshots. These snapshots are in the same database: they protect against editing mistakes, not loss of the hosting database. Customer backups include a snapshot index; load a snapshot first to export its previous text.
+
+`/packet` renders a structured private print/PDF view with identity, preparation review, draft, evidence/file index, record comparison, follow-ups and timeline. It requires an active pass for a real case. `/packet?example=1` is explicitly fictional. Route access is checked server-side and the packet is non-cacheable. Original evidence bytes remain separate attachments.

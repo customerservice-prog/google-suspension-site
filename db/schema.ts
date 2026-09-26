@@ -4,3 +4,4 @@ export const evidence=sqliteTable('evidence',{id:text('id').primaryKey(),caseId:
 export const payments=sqliteTable('payments',{id:text('id').primaryKey(),caseId:text('case_id').notNull(),userId:text('user_id').notNull(),status:text('status').notNull(),intent:text('intent'),expires:text('expires'),created:text('created').notNull()});
 export const requestLimits=sqliteTable('request_limits',{key:text('key').primaryKey(),count:integer('count').notNull(),expires:integer('expires').notNull()});
 
+export const caseVersions=sqliteTable('case_versions',{id:text('id').primaryKey(),caseId:text('case_id').notNull(),userId:text('user_id').notNull(),data:text('data').notNull(),version:integer('version').notNull(),created:text('created').notNull()},t=>[index('versions_case_user_idx').on(t.caseId,t.userId)]);
