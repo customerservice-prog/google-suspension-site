@@ -45,3 +45,9 @@ Guidance is rules-based and sourced, not a live Google diagnosis or an LLM-gener
 ## Validation boundaries
 
 Compile/build and domain/security tests are included. Browser visual verification and live Stripe checkout must be completed in a compatible testing environment. The platform must strip and securely inject authentication headers. The product does not guarantee reinstatement, recover a fixed review count, bypass restrictions, or infer Google’s internal suspension reason.
+
+## Case review improvements
+
+The free workspace now records structured diagnostic answers and recommends route changes with an explanation. Account restrictions take priority over individual profile appeals; Ads remains separate. Decisions in the timeline produce specific next steps. Optional document-name/address comparisons surface differences for human review, not authenticity or eligibility verdicts. Case review findings are included in paid exports. Drafts track their factual basis and warn about stale content without overwriting edits. Switching cases protects unsaved changes.
+
+`tests/recovery.test.ts` covers route precedence, unknown answers, evidence comparison, draft staleness, and decision guidance alongside the original payment-signature and recovery-content tests.

@@ -1,5 +1,6 @@
+import type {Triage} from './case-review.ts';
 export type Issue = 'suspended'|'restricted'|'ownership'|'verification'|'reviews'|'duplicate'|'denied'|'ads';
-export type CaseData = {id?:string; business:string; email:string; profileId:string; mapsUrl:string; address:string; previousAddress:string; type:string; issue:Issue; notice:string; corrections:string; caseNumber:string; status:string; checks:string[]; events:{date:string;title:string;detail:string}[]; draft:string; paid?:boolean; version?:number};
+export type CaseData = {triage?:Triage; draftBasis?:string; id?:string; business:string; email:string; profileId:string; mapsUrl:string; address:string; previousAddress:string; type:string; issue:Issue; notice:string; corrections:string; caseNumber:string; status:string; checks:string[]; events:{date:string;title:string;detail:string}[]; draft:string; paid?:boolean; version?:number};
 export const emptyCase:CaseData={business:'',email:'',profileId:'',mapsUrl:'',address:'',previousAddress:'',type:'service',issue:'suspended',notice:'',corrections:'',caseNumber:'',status:'Preparing',checks:[],events:[],draft:''};
 export const sources=[
  {title:'Suspension and appeals',url:'https://support.google.com/business/answer/4569145',topic:'Appeals'},
