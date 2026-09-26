@@ -1,0 +1,2 @@
+'use client';
+export default function ErrorPage({reset}:{reset:()=>void}){return <main style={{maxWidth:640,margin:'12vh auto',padding:24,fontFamily:'sans-serif'}}><h1>We couldn’t open this workspace.</h1><p>Your saved cases remain in your account. Try again; avoid resubmitting a payment while checking its status.</p><button onClick={reset} style={{padding:'12px 20px',marginRight:16}}>Try again</button><a href="/">Return to ProfilePath</a></main>;}
